@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Siège auto en tissu, après nettoyage : tissu net, clair et impeccable">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="80%">
+      <stop offset="0%" stop-color="#111823"/>
+      <stop offset="100%" stop-color="#0d141f"/>
+    </radialGradient>
+    <linearGradient id="fabric" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#939dac"/>
+      <stop offset="100%" stop-color="#6a7484"/>
+    </linearGradient>
+    <linearGradient id="bolster" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7a8494"/>
+      <stop offset="100%" stop-color="#565f6e"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a1abba"/>
+      <stop offset="100%" stop-color="#75808f"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gloss" cx="50%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <path id="etoile" d="M0 -13 L3 -3 L13 0 L3 3 L0 13 L-3 3 L-13 0 L-3 -3 Z"/>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Ombre au sol -->
+  <ellipse cx="400" cy="548" rx="250" ry="26" fill="#000000" opacity="0.55" filter="url(#soft)"/>
+  <!-- Halo "fraîchement nettoyé" -->
+  <ellipse cx="400" cy="300" rx="290" ry="250" fill="url(#gloss)" opacity="0.6"/>
+
+  <!-- Appuie-tête -->
+  <rect x="322" y="52" width="156" height="86" rx="36" fill="url(#fabric)" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="322" y="52" width="156" height="86" rx="36" fill="url(#sheen)"/>
+  <rect x="362" y="130" width="12" height="34" rx="5" fill="#39404c"/>
+  <rect x="426" y="130" width="12" height="34" rx="5" fill="#39404c"/>
+
+  <!-- Dossier -->
+  <rect x="242" y="152" width="316" height="266" rx="44" fill="url(#fabric)" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="252" y="164" width="58" height="244" rx="28" fill="url(#bolster)"/>
+  <rect x="490" y="164" width="58" height="244" rx="28" fill="url(#bolster)"/>
+  <rect x="320" y="166" width="160" height="240" rx="22" fill="url(#panel)"/>
+  <g stroke="#49525f" stroke-width="2" opacity="0.8">
+    <line x1="330" y1="216" x2="470" y2="216"/>
+    <line x1="330" y1="264" x2="470" y2="264"/>
+    <line x1="330" y1="312" x2="470" y2="312"/>
+    <line x1="330" y1="360" x2="470" y2="360"/>
+  </g>
+  <!-- Reflets doux sur le dossier -->
+  <rect x="320" y="166" width="160" height="240" rx="22" fill="url(#sheen)"/>
+  <ellipse cx="400" cy="196" rx="140" ry="52" fill="url(#gloss)"/>
+
+  <!-- Assise -->
+  <rect x="240" y="536" width="320" height="20" rx="10" fill="#242b36"/>
+  <rect x="210" y="406" width="380" height="136" rx="42" fill="url(#fabric)" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="218" y="416" width="66" height="118" rx="30" fill="url(#bolster)"/>
+  <rect x="516" y="416" width="66" height="118" rx="30" fill="url(#bolster)"/>
+  <rect x="294" y="418" width="212" height="114" rx="20" fill="url(#panel)"/>
+  <g stroke="#49525f" stroke-width="2" opacity="0.8">
+    <line x1="347" y1="426" x2="347" y2="524"/>
+    <line x1="400" y1="426" x2="400" y2="524"/>
+    <line x1="453" y1="426" x2="453" y2="524"/>
+  </g>
+  <!-- Reflets doux sur l'assise -->
+  <rect x="294" y="418" width="212" height="114" rx="20" fill="url(#sheen)"/>
+  <ellipse cx="400" cy="436" rx="150" ry="30" fill="url(#gloss)" opacity="0.8"/>
+
+  <!-- Étincelles de propreté -->
+  <g fill="#bfe9ff">
+    <use href="#etoile" transform="translate(302 198)" opacity="0.9"/>
+    <use href="#etoile" transform="translate(486 358) scale(0.7)" opacity="0.8"/>
+    <use href="#etoile" transform="translate(266 452) scale(0.55)" opacity="0.75"/>
+  </g>
+  <g fill="#67e8f9" opacity="0.5">
+    <circle cx="302" cy="198" r="4"/>
+    <circle cx="486" cy="358" r="3"/>
+    <circle cx="266" cy="452" r="2.5"/>
+  </g>
+</svg>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Canapé trois places en tissu, après nettoyage : tissu clair, net et éclatant">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="80%">
+      <stop offset="0%" stop-color="#111823"/>
+      <stop offset="100%" stop-color="#0d141f"/>
+    </radialGradient>
+    <linearGradient id="corps" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8e98a8"/>
+      <stop offset="100%" stop-color="#66707f"/>
+    </linearGradient>
+    <linearGradient id="coussin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a0aab9"/>
+      <stop offset="100%" stop-color="#747e8e"/>
+    </linearGradient>
+    <linearGradient id="accoudoir" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#828c9b"/>
+      <stop offset="100%" stop-color="#5c6675"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.26"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gloss" cx="50%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <path id="etoile" d="M0 -13 L3 -3 L13 0 L3 3 L0 13 L-3 3 L-13 0 L-3 -3 Z"/>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Ombre au sol -->
+  <ellipse cx="400" cy="524" rx="315" ry="26" fill="#000000" opacity="0.55" filter="url(#soft)"/>
+  <!-- Halo "fraîchement nettoyé" -->
+  <ellipse cx="400" cy="310" rx="340" ry="220" fill="url(#gloss)" opacity="0.6"/>
+
+  <!-- Pieds -->
+  <rect x="132" y="486" width="20" height="32" rx="5" fill="#2b3340"/>
+  <rect x="648" y="486" width="20" height="32" rx="5" fill="#2b3340"/>
+
+  <!-- Dossier -->
+  <rect x="140" y="150" width="520" height="212" rx="30" fill="url(#corps)" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="156" y="166" width="144" height="170" rx="22" fill="url(#coussin)" stroke="#4a5361" stroke-width="2"/>
+  <rect x="328" y="166" width="144" height="170" rx="22" fill="url(#coussin)" stroke="#4a5361" stroke-width="2"/>
+  <rect x="500" y="166" width="144" height="170" rx="22" fill="url(#coussin)" stroke="#4a5361" stroke-width="2"/>
+  <!-- Reflets sur les coussins de dossier -->
+  <rect x="156" y="166" width="144" height="170" rx="22" fill="url(#sheen)"/>
+  <rect x="328" y="166" width="144" height="170" rx="22" fill="url(#sheen)"/>
+  <rect x="500" y="166" width="144" height="170" rx="22" fill="url(#sheen)"/>
+  <ellipse cx="400" cy="190" rx="240" ry="42" fill="url(#gloss)" opacity="0.8"/>
+
+  <!-- Base -->
+  <rect x="100" y="390" width="600" height="98" rx="22" fill="url(#corps)" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="2"/>
+
+  <!-- Coussins d'assise -->
+  <rect x="156" y="332" width="144" height="72" rx="18" fill="url(#coussin)" stroke="#4a5361" stroke-width="2"/>
+  <rect x="328" y="332" width="144" height="72" rx="18" fill="url(#coussin)" stroke="#4a5361" stroke-width="2"/>
+  <rect x="500" y="332" width="144" height="72" rx="18" fill="url(#coussin)" stroke="#4a5361" stroke-width="2"/>
+  <rect x="156" y="332" width="144" height="72" rx="18" fill="url(#sheen)"/>
+  <rect x="328" y="332" width="144" height="72" rx="18" fill="url(#sheen)"/>
+  <rect x="500" y="332" width="144" height="72" rx="18" fill="url(#sheen)"/>
+
+  <!-- Accoudoirs -->
+  <rect x="66" y="236" width="102" height="234" rx="42" fill="url(#accoudoir)" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="632" y="236" width="102" height="234" rx="42" fill="url(#accoudoir)" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="66" y="236" width="102" height="234" rx="42" fill="url(#sheen)"/>
+  <rect x="632" y="236" width="102" height="234" rx="42" fill="url(#sheen)"/>
+
+  <!-- Étincelles de propreté -->
+  <g fill="#bfe9ff">
+    <use href="#etoile" transform="translate(230 210)" opacity="0.9"/>
+    <use href="#etoile" transform="translate(560 348) scale(0.7)" opacity="0.8"/>
+    <use href="#etoile" transform="translate(116 288) scale(0.6)" opacity="0.8"/>
+    <use href="#etoile" transform="translate(414 428) scale(0.5)" opacity="0.7"/>
+  </g>
+  <g fill="#67e8f9" opacity="0.5">
+    <circle cx="230" cy="210" r="4"/>
+    <circle cx="560" cy="348" r="3"/>
+    <circle cx="116" cy="288" r="2.6"/>
+    <circle cx="414" cy="428" r="2.2"/>
+  </g>
+</svg>

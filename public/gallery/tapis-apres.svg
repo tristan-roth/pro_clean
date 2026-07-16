@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Tapis à médaillon, après nettoyage : couleurs ravivées et éclatantes">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="80%">
+      <stop offset="0%" stop-color="#111823"/>
+      <stop offset="100%" stop-color="#0d141f"/>
+    </radialGradient>
+    <linearGradient id="bordure" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c2f49"/>
+      <stop offset="100%" stop-color="#142338"/>
+    </linearGradient>
+    <linearGradient id="champ" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#33639c"/>
+      <stop offset="100%" stop-color="#274e7d"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gloss" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <path id="etoile" d="M0 -13 L3 -3 L13 0 L3 3 L0 13 L-3 3 L-13 0 L-3 -3 Z"/>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Ombre portée -->
+  <rect x="110" y="140" width="580" height="360" rx="12" fill="#000000" opacity="0.5" filter="url(#soft)"/>
+
+  <!-- Franges -->
+  <line x1="83" y1="128" x2="83" y2="472" stroke="#cbd6e4" stroke-width="13" stroke-dasharray="3 9" opacity="0.85"/>
+  <line x1="717" y1="128" x2="717" y2="472" stroke="#cbd6e4" stroke-width="13" stroke-dasharray="3 9" opacity="0.85"/>
+
+  <!-- Corps du tapis : bordure puis champ -->
+  <rect x="90" y="115" width="620" height="370" rx="6" fill="url(#bordure)" stroke="#7dd3fc" stroke-opacity="0.25" stroke-width="2"/>
+  <rect x="113" y="136" width="574" height="328" fill="none" stroke="#7dd3fc" stroke-width="5" stroke-dasharray="16 10" opacity="0.8"/>
+  <rect x="140" y="160" width="520" height="280" rx="4" fill="url(#champ)" stroke="#16273d" stroke-width="3"/>
+
+  <!-- Médaillon central -->
+  <path d="M400 205 L525 300 L400 395 L275 300 Z" fill="#e3ebf4" stroke="#8fb8dd" stroke-width="3"/>
+  <path d="M400 238 L478 300 L400 362 L322 300 Z" fill="#23406b" stroke="#8fb8dd" stroke-width="2"/>
+  <circle cx="400" cy="300" r="34" fill="#38bdf8" stroke="#bfe9ff" stroke-width="3"/>
+  <circle cx="400" cy="300" r="10" fill="#e3ebf4"/>
+
+  <!-- Motifs d'angle -->
+  <g fill="#e3ebf4" opacity="0.95">
+    <path d="M176 178 L192 192 L176 206 L160 192 Z"/>
+    <path d="M624 178 L640 192 L624 206 L608 192 Z"/>
+    <path d="M176 394 L192 408 L176 422 L160 408 Z"/>
+    <path d="M624 394 L640 408 L624 422 L608 408 Z"/>
+  </g>
+
+  <!-- Reflets : fibres ravivées -->
+  <rect x="90" y="115" width="620" height="370" rx="6" fill="url(#sheen)"/>
+  <ellipse cx="400" cy="240" rx="280" ry="100" fill="url(#gloss)"/>
+
+  <!-- Étincelles de propreté -->
+  <g fill="#bfe9ff">
+    <use href="#etoile" transform="translate(232 216)" opacity="0.9"/>
+    <use href="#etoile" transform="translate(580 380) scale(0.7)" opacity="0.85"/>
+    <use href="#etoile" transform="translate(508 210) scale(0.55)" opacity="0.75"/>
+  </g>
+  <g fill="#67e8f9" opacity="0.5">
+    <circle cx="232" cy="216" r="4"/>
+    <circle cx="580" cy="380" r="3"/>
+    <circle cx="508" cy="210" r="2.5"/>
+  </g>
+</svg>

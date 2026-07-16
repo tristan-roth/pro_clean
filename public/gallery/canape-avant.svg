@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Canapé trois places en tissu, avant nettoyage : taches de café et auréoles">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="80%">
+      <stop offset="0%" stop-color="#111823"/>
+      <stop offset="100%" stop-color="#0d141f"/>
+    </radialGradient>
+    <linearGradient id="corps" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#655c4c"/>
+      <stop offset="100%" stop-color="#494337"/>
+    </linearGradient>
+    <linearGradient id="coussin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6e6452"/>
+      <stop offset="100%" stop-color="#514a3b"/>
+    </linearGradient>
+    <linearGradient id="accoudoir" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5b5343"/>
+      <stop offset="100%" stop-color="#423c30"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="blur6" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Ombre au sol -->
+  <ellipse cx="400" cy="524" rx="315" ry="26" fill="#000000" opacity="0.55" filter="url(#soft)"/>
+
+  <!-- Pieds -->
+  <rect x="132" y="486" width="20" height="32" rx="5" fill="#211a12"/>
+  <rect x="648" y="486" width="20" height="32" rx="5" fill="#211a12"/>
+
+  <!-- Dossier -->
+  <rect x="140" y="150" width="520" height="212" rx="30" fill="url(#corps)" stroke="#26221a" stroke-width="2"/>
+  <rect x="156" y="166" width="144" height="170" rx="22" fill="url(#coussin)" stroke="#2c2720" stroke-width="2"/>
+  <rect x="328" y="166" width="144" height="170" rx="22" fill="url(#coussin)" stroke="#2c2720" stroke-width="2"/>
+  <rect x="500" y="166" width="144" height="170" rx="22" fill="url(#coussin)" stroke="#2c2720" stroke-width="2"/>
+
+  <!-- Base -->
+  <rect x="100" y="390" width="600" height="98" rx="22" fill="url(#corps)" stroke="#26221a" stroke-width="2"/>
+
+  <!-- Coussins d'assise -->
+  <rect x="156" y="332" width="144" height="72" rx="18" fill="url(#coussin)" stroke="#2c2720" stroke-width="2"/>
+  <rect x="328" y="332" width="144" height="72" rx="18" fill="url(#coussin)" stroke="#2c2720" stroke-width="2"/>
+  <rect x="500" y="332" width="144" height="72" rx="18" fill="url(#coussin)" stroke="#2c2720" stroke-width="2"/>
+
+  <!-- Accoudoirs -->
+  <rect x="66" y="236" width="102" height="234" rx="42" fill="url(#accoudoir)" stroke="#26221a" stroke-width="2"/>
+  <rect x="632" y="236" width="102" height="234" rx="42" fill="url(#accoudoir)" stroke="#26221a" stroke-width="2"/>
+
+  <!-- Usure : zones ternies au centre des assises -->
+  <ellipse cx="228" cy="368" rx="52" ry="20" fill="#241f14" opacity="0.25"/>
+  <ellipse cx="400" cy="368" rx="52" ry="20" fill="#241f14" opacity="0.25"/>
+  <ellipse cx="572" cy="368" rx="52" ry="20" fill="#241f14" opacity="0.25"/>
+
+  <!-- Tache de café + auréole, assise centrale -->
+  <ellipse cx="398" cy="366" rx="58" ry="26" fill="none" stroke="#20150a" stroke-width="6" opacity="0.5" filter="url(#blur6)"/>
+  <ellipse cx="396" cy="364" rx="44" ry="19" fill="#39230d" opacity="0.65"/>
+  <ellipse cx="382" cy="372" rx="20" ry="10" fill="#291809" opacity="0.7"/>
+  <ellipse cx="424" cy="356" rx="13" ry="7" fill="#33200c" opacity="0.55"/>
+
+  <!-- Tache sur le coussin de dossier gauche -->
+  <ellipse cx="232" cy="248" rx="44" ry="34" fill="none" stroke="#221709" stroke-width="5" opacity="0.45" filter="url(#blur6)"/>
+  <ellipse cx="230" cy="246" rx="33" ry="24" fill="#3a2810" opacity="0.55"/>
+  <ellipse cx="218" cy="258" rx="16" ry="12" fill="#2b1d0b" opacity="0.6"/>
+
+  <!-- Éclaboussure séchée, coussin de dossier droit -->
+  <ellipse cx="562" cy="290" rx="24" ry="15" fill="#35240f" opacity="0.5"/>
+  <circle cx="596" cy="270" r="6" fill="#31210e" opacity="0.5"/>
+  <circle cx="540" cy="266" r="4.5" fill="#31210e" opacity="0.45"/>
+
+  <!-- Coulures sur l'accoudoir droit -->
+  <path d="M676 288 q5 20 -2 40 q-6 18 3 38" fill="none" stroke="#31220e" stroke-width="9" stroke-linecap="round" opacity="0.5"/>
+  <path d="M700 312 q4 16 -1 32" fill="none" stroke="#2b1e0c" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+  <ellipse cx="684" cy="282" rx="17" ry="10" fill="#35240f" opacity="0.5"/>
+
+  <!-- Trace sur la base -->
+  <ellipse cx="308" cy="438" rx="34" ry="14" fill="#30220f" opacity="0.45"/>
+  <ellipse cx="308" cy="438" rx="45" ry="21" fill="none" stroke="#201507" stroke-width="4" opacity="0.35" filter="url(#blur6)"/>
+
+  <!-- Miettes et poussière -->
+  <g fill="#c9b98f" opacity="0.7">
+    <circle cx="196" cy="384" r="2.6"/><circle cx="262" cy="352" r="2.2"/><circle cx="352" cy="390" r="2.8"/>
+    <circle cx="452" cy="348" r="2.2"/><circle cx="522" cy="386" r="2.5"/><circle cx="608" cy="352" r="2.2"/>
+  </g>
+  <g fill="#877757" opacity="0.65">
+    <circle cx="226" cy="344" r="2"/><circle cx="382" cy="344" r="2.2"/><circle cx="486" cy="392" r="2"/>
+    <circle cx="556" cy="344" r="1.8"/><circle cx="330" cy="358" r="1.8"/><circle cx="632" cy="388" r="2.2"/>
+  </g>
+  <g fill="#7a6d52" opacity="0.4">
+    <circle cx="250" cy="204" r="1.8"/><circle cx="370" cy="226" r="1.6"/><circle cx="430" cy="192" r="1.6"/>
+    <circle cx="586" cy="216" r="1.8"/><circle cx="300" cy="292" r="1.6"/><circle cx="470" cy="304" r="1.4"/>
+  </g>
+
+  <!-- Éclairage plat : léger voile terne -->
+  <rect x="60" y="140" width="680" height="390" fill="#141210" opacity="0.18"/>
+</svg>

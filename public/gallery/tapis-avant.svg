@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Tapis à médaillon, avant nettoyage : couleurs ternies, taches et auréoles">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="80%">
+      <stop offset="0%" stop-color="#111823"/>
+      <stop offset="100%" stop-color="#0d141f"/>
+    </radialGradient>
+    <linearGradient id="bordure" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a372e"/>
+      <stop offset="100%" stop-color="#2e2b24"/>
+    </linearGradient>
+    <linearGradient id="champ" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4f4c43"/>
+      <stop offset="100%" stop-color="#403e36"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="blur6" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Ombre portée -->
+  <rect x="110" y="140" width="580" height="360" rx="12" fill="#000000" opacity="0.5" filter="url(#soft)"/>
+
+  <!-- Franges -->
+  <line x1="83" y1="128" x2="83" y2="472" stroke="#6b6452" stroke-width="13" stroke-dasharray="3 9" opacity="0.7"/>
+  <line x1="717" y1="128" x2="717" y2="472" stroke="#6b6452" stroke-width="13" stroke-dasharray="3 9" opacity="0.7"/>
+
+  <!-- Corps du tapis : bordure puis champ -->
+  <rect x="90" y="115" width="620" height="370" rx="6" fill="url(#bordure)" stroke="#211f19" stroke-width="2"/>
+  <rect x="113" y="136" width="574" height="328" fill="none" stroke="#565043" stroke-width="5" stroke-dasharray="16 10" opacity="0.8"/>
+  <rect x="140" y="160" width="520" height="280" rx="4" fill="url(#champ)" stroke="#2a2820" stroke-width="3"/>
+
+  <!-- Médaillon central -->
+  <path d="M400 205 L525 300 L400 395 L275 300 Z" fill="#78705c" stroke="#57503f" stroke-width="3"/>
+  <path d="M400 238 L478 300 L400 362 L322 300 Z" fill="#403d33" stroke="#57503f" stroke-width="2"/>
+  <circle cx="400" cy="300" r="34" fill="#5a523f" stroke="#6d6450" stroke-width="3"/>
+  <circle cx="400" cy="300" r="10" fill="#78705c"/>
+
+  <!-- Motifs d'angle -->
+  <g fill="#6d6450" opacity="0.85">
+    <path d="M176 178 L192 192 L176 206 L160 192 Z"/>
+    <path d="M624 178 L640 192 L624 206 L608 192 Z"/>
+    <path d="M176 394 L192 408 L176 422 L160 408 Z"/>
+    <path d="M624 394 L640 408 L624 422 L608 408 Z"/>
+  </g>
+
+  <!-- Grande auréole et tache, côté droit -->
+  <ellipse cx="565" cy="345" rx="72" ry="52" fill="none" stroke="#221808" stroke-width="7" opacity="0.5" filter="url(#blur6)"/>
+  <ellipse cx="562" cy="342" rx="54" ry="38" fill="#38290f" opacity="0.5"/>
+  <ellipse cx="546" cy="356" rx="26" ry="18" fill="#291d0a" opacity="0.6"/>
+
+  <!-- Tache sombre, bas gauche -->
+  <ellipse cx="238" cy="392" rx="42" ry="24" fill="#2c2009" opacity="0.55"/>
+  <ellipse cx="238" cy="392" rx="55" ry="34" fill="none" stroke="#1f1606" stroke-width="5" opacity="0.4" filter="url(#blur6)"/>
+  <ellipse cx="262" cy="380" rx="14" ry="8" fill="#241a07" opacity="0.55"/>
+
+  <!-- Trace de passage ternie au centre -->
+  <ellipse cx="400" cy="300" rx="150" ry="60" fill="#1b1912" opacity="0.28"/>
+
+  <!-- Éclaboussures et poussière -->
+  <g fill="#2f2410" opacity="0.5">
+    <circle cx="330" cy="222" r="6"/><circle cx="356" cy="210" r="4"/><circle cx="306" cy="238" r="4.5"/>
+    <circle cx="486" cy="416" r="5"/><circle cx="510" cy="428" r="3.5"/>
+  </g>
+  <g fill="#8d8168" opacity="0.5">
+    <circle cx="212" cy="216" r="2.4"/><circle cx="286" cy="330" r="2"/><circle cx="452" cy="252" r="2.2"/>
+    <circle cx="588" cy="230" r="2.4"/><circle cx="352" cy="418" r="2"/><circle cx="620" cy="404" r="2.2"/>
+  </g>
+
+  <!-- Voile terne général sur le tapis -->
+  <rect x="90" y="115" width="620" height="370" rx="6" fill="#16140e" opacity="0.28"/>
+</svg>
