@@ -4,6 +4,9 @@
 
 :root {
   color-scheme: dark;
+  /* Position du spotlight (lampe d'inspection) — pilotée par JS */
+  --spot-x: 50%;
+  --spot-y: 30%;
 }
 
 html {
@@ -11,86 +14,175 @@ html {
 }
 
 body {
-  @apply bg-night-950 text-steel-200 antialiased;
+  @apply bg-obsidian-950 text-silver-300 antialiased;
 }
 
 ::selection {
-  @apply bg-neon-500/40 text-white;
+  @apply bg-vapor-500/30 text-porcelain;
 }
 
 /* ---------------------------------------------------------------------------
-   Composants partagés du design system.
-   Tous les composants du site doivent réutiliser ces classes plutôt que de
-   redéfinir leurs propres variantes.
+   Design system — identité "matière & atelier".
+   Noir obsidian, trame textile, hairlines, métal brossé.
+   Tous les composants réutilisent ces classes.
 --------------------------------------------------------------------------- */
 @layer components {
-  /* Conteneur de section standard */
   .section-container {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
-  /* Titre de section (h2) */
+  /* Titre de section — serif, grand, respirant */
   .section-title {
-    @apply font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-tight;
+    @apply font-serif text-3xl font-medium tracking-tight text-porcelain sm:text-4xl lg:text-[2.9rem] lg:leading-[1.12];
   }
 
-  /* Sur-titre "eyebrow" au-dessus des titres de section */
+  /* Sur-titre : petites capitales espacées + filet, sans pastille */
   .section-eyebrow {
-    @apply mb-3 inline-flex items-center gap-2 rounded-full border border-neon-400/25 bg-neon-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-neon-300;
+    @apply mb-5 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-caps text-vapor-300;
+  }
+  .section-eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-vapor-400/60;
   }
 
-  /* Paragraphe d'introduction sous un titre */
   .section-lead {
-    @apply mt-4 max-w-2xl text-base leading-relaxed text-steel-300 sm:text-lg;
+    @apply mt-5 max-w-2xl text-base font-light leading-relaxed text-silver-400 sm:text-lg;
   }
 
-  /* Carte sombre standard, avec reflet subtil */
-  .glass-card {
-    @apply relative overflow-hidden rounded-2xl border border-white/[0.07] bg-night-800/80 bg-card-sheen shadow-card backdrop-blur-sm;
+  /* Carte matière — surface anthracite, liseré haut lumineux, ombre profonde */
+  .material-card {
+    @apply relative overflow-hidden rounded-2xl border border-white/[0.06] bg-obsidian-800/70 shadow-card backdrop-blur-sm;
   }
 
-  /* Bouton principal (CTA) — dégradé bleu électrique + halo néon */
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-cta-gradient px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-night-950 shadow-neon-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-neon focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-400 active:translate-y-0 disabled:pointer-events-none disabled:opacity-40;
+  /* -------------------------------------------------------------------------
+     Bouton principal — métal liquide.
+     Surface claire type acier poli ; au survol, un reflet spéculaire
+     traverse la surface comme une coulée de métal en fusion.
+  ------------------------------------------------------------------------- */
+  .btn-metal {
+    @apply relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full px-8 py-4 text-[13px] font-semibold uppercase tracking-caps text-obsidian-950 transition-transform duration-500 ease-out-expo;
+    background-image: linear-gradient(180deg, #f7f7f8 0%, #dcdce1 50%, #c6c6cd 52%, #ececef 100%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.18) inset,
+      0 16px 40px -14px rgba(0, 0, 0, 0.9);
+  }
+  .btn-metal::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0;
+    background: linear-gradient(
+      105deg,
+      transparent 32%,
+      rgba(255, 255, 255, 0.95) 46%,
+      rgba(190, 214, 224, 0.6) 52%,
+      transparent 66%
+    );
+    transform: translateX(-130%) skewX(-8deg);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-metal:hover::after,
+  .btn-metal:focus-visible::after {
+    transform: translateX(130%) skewX(-8deg);
+  }
+  .btn-metal:hover {
+    transform: translateY(-1px);
+  }
+  .btn-metal:active {
+    transform: translateY(0);
+  }
+  .btn-metal:focus-visible {
+    @apply outline outline-2 outline-offset-4 outline-vapor-400;
+  }
+  .btn-metal:disabled {
+    @apply pointer-events-none opacity-40;
   }
 
-  /* Bouton secondaire — bordure néon discrète */
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-neon-400/30 bg-night-800/60 px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-neon-300 transition-all duration-300 hover:border-neon-400/70 hover:bg-neon-500/10 hover:shadow-neon-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-400 disabled:pointer-events-none disabled:opacity-40;
+  /* Bouton secondaire — hairline discret, remplissage feutré au survol */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-white/15 bg-transparent px-8 py-4 text-[13px] font-semibold uppercase tracking-caps text-silver-200 transition-all duration-500 ease-out-expo hover:border-white/30 hover:bg-white/[0.04] hover:text-porcelain focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-vapor-400 disabled:pointer-events-none disabled:opacity-40;
   }
 
-  /* Champ de formulaire sombre */
+  /* Champs de formulaire — sobres, focus vapeur précis */
   .form-input {
-    @apply w-full rounded-xl border border-white/10 bg-night-900/80 px-4 py-3 text-sm text-steel-100 placeholder:text-steel-500 transition-colors duration-200 focus:border-neon-400/60 focus:outline-none focus:ring-2 focus:ring-neon-500/25;
+    @apply w-full rounded-xl border border-white/[0.08] bg-obsidian-900/80 px-4 py-3.5 text-sm text-porcelain placeholder:text-silver-600 transition-colors duration-300 focus:border-vapor-400/50 focus:outline-none focus:ring-1 focus:ring-vapor-400/30;
   }
 
   .form-label {
-    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-steel-400;
+    @apply mb-2 block text-[11px] font-semibold uppercase tracking-caps text-silver-400;
   }
 
-  /* Ligne néon décorative (séparateur) */
-  .neon-divider {
-    @apply h-px w-full bg-neon-line;
+  /* Séparateur hairline */
+  .hairline-divider {
+    @apply h-px w-full bg-hairline;
   }
 }
 
 @layer utilities {
-  /* Texte en dégradé bleu néon */
-  .text-neon-gradient {
-    @apply bg-gradient-to-r from-neon-300 via-ice-300 to-neon-400 bg-clip-text text-transparent;
+  /* -------------------------------------------------------------------------
+     Trame textile fine — tissage diagonal type sergé / fibre technique.
+     Deux réseaux de fils croisés à 45°, à peine perceptibles.
+  ------------------------------------------------------------------------- */
+  .bg-weave {
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.035) 0px,
+        rgba(255, 255, 255, 0.035) 1px,
+        transparent 1px,
+        transparent 7px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.025) 0px,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px,
+        transparent 7px
+      );
   }
 
-  /* Motif grille technique en filigrane (à poser sur une section) */
-  .bg-grid-faint {
+  /* Tissage carbone — panneaux "matière" plus affirmés (fonds de visuels) */
+  .bg-carbon {
+    background-color: #0c0c0f;
     background-image:
-      linear-gradient(rgba(125, 211, 252, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(125, 211, 252, 0.04) 1px, transparent 1px);
-    background-size: 44px 44px;
+      linear-gradient(27deg, #131318 5px, transparent 5px),
+      linear-gradient(207deg, #131318 5px, transparent 5px),
+      linear-gradient(27deg, #0e0e12 5px, transparent 5px),
+      linear-gradient(207deg, #0e0e12 5px, transparent 5px),
+      linear-gradient(90deg, #101014 10px, transparent 10px),
+      linear-gradient(#0d0d11 25%, #0b0b0e 25%, #0b0b0e 50%, transparent 50%, transparent 75%, #101014 75%, #101014);
+    background-size: 20px 20px;
+    background-position:
+      0 5px,
+      10px 0,
+      10px 15px,
+      0 10px,
+      0 0,
+      0 0;
+  }
+
+  /* Texte gravé — dégradé argenté discret pour un mot mis en valeur */
+  .text-engraved {
+    @apply bg-gradient-to-b from-porcelain via-silver-200 to-silver-400 bg-clip-text text-transparent;
+  }
+
+  /* Accent italique serif — le "geste" artisanal dans un titre */
+  .text-gesture {
+    @apply font-serif italic text-vapor-300;
   }
 
   .scrollbar-thin-dark {
     scrollbar-width: thin;
-    scrollbar-color: rgba(56, 189, 248, 0.35) transparent;
+    scrollbar-color: rgba(148, 148, 158, 0.3) transparent;
+  }
+
+  /* Parallaxe interne des TiltCard — consomme les variables posées par le tilt */
+  [data-tilt-parallax] {
+    transform: translate3d(calc(var(--tilt-x, 0) * 10px), calc(var(--tilt-y, 0) * 10px), 0);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  [data-tilt-parallax="deep"] {
+    transform: translate3d(calc(var(--tilt-x, 0) * 18px), calc(var(--tilt-y, 0) * 18px), 0);
   }
 }
 

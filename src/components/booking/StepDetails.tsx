@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowLeft, CalendarDays, LoaderCircle } from "lucide-react";
 import type { BookingFormData } from "./BookingWizard";
 
 /** Réexport local pour les consommateurs du formulaire de coordonnées. */
@@ -54,7 +55,7 @@ export default function StepDetails({
     if (!formData.phone.trim()) {
       errors.phone = "Le numéro de téléphone est requis.";
     } else if (!PHONE_RE.test(formData.phone.trim())) {
-      errors.phone = "Numéro de téléphone invalide (ex. 06 12 34 56 78).";
+      errors.phone = "Numéro de téléphone invalide (ex. 06 12 34 56 78).";
     }
 
     if (!formData.email.trim()) {
@@ -74,33 +75,19 @@ export default function StepDetails({
   return (
     <div>
       {/* --------------------------------------------------------- Récapitulatif */}
-      <div className="glass-card mb-6 p-5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-steel-400">
+      <div className="mb-7 rounded-2xl border border-white/[0.06] bg-obsidian-900/70 p-5">
+        <p className="text-[10px] font-semibold uppercase tracking-caps text-silver-500">
           Votre rendez-vous
         </p>
-        <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span className="font-display text-lg font-semibold text-white">
+        <div className="mt-2.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="font-serif text-lg font-medium text-porcelain">
             {recap.serviceName}
           </span>
-          <span className="text-sm font-bold text-neon-300">{recap.price}</span>
-          <span className="text-xs text-steel-400">{recap.duration}</span>
+          <span className="font-serif text-sm italic text-vapor-300">{recap.price}</span>
+          <span className="text-xs text-silver-500">{recap.duration}</span>
         </div>
-        <p className="mt-2 inline-flex items-center gap-2 text-sm text-steel-200">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-neon-400"
-            aria-hidden="true"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
+        <p className="mt-2.5 inline-flex items-center gap-2 text-sm text-silver-300">
+          <CalendarDays strokeWidth={1.5} className="h-4 w-4 text-vapor-400" aria-hidden="true" />
           {recap.dateLabel}
         </p>
       </div>
@@ -213,7 +200,7 @@ export default function StepDetails({
 
         <div>
           <label htmlFor="booking-notes" className="form-label">
-            Précisions <span className="normal-case text-steel-500">(optionnel)</span>
+            Précisions <span className="normal-case text-silver-600">(optionnel)</span>
           </label>
           <textarea
             id="booking-notes"
@@ -225,60 +212,32 @@ export default function StepDetails({
           />
         </div>
 
-        <p className="text-xs text-steel-500">
+        <p className="text-xs font-light text-silver-600">
           Vos données ne servent qu&apos;à la gestion de votre rendez-vous.
         </p>
 
         {error && (
           <div
             role="alert"
-            className="rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm text-red-300"
+            className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-300"
           >
             {error}
           </div>
         )}
 
         <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
-          <button type="button" className="btn-secondary" onClick={onBack} disabled={submitting}>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M19 12H5m7-7l-7 7 7 7" />
-            </svg>
+          <button type="button" className="btn-ghost" onClick={onBack} disabled={submitting}>
+            <ArrowLeft strokeWidth={1.5} className="h-4 w-4" aria-hidden="true" />
             Retour
           </button>
-          <button type="submit" className="btn-primary" disabled={submitting}>
+          <button type="submit" className="btn-metal" disabled={submitting}>
             {submitting ? (
               <>
-                <svg
+                <LoaderCircle
+                  strokeWidth={1.75}
                   className="h-4 w-4 animate-spin"
-                  viewBox="0 0 24 24"
-                  fill="none"
                   aria-hidden="true"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    className="opacity-25"
-                  />
-                  <path
-                    d="M12 2a10 10 0 0 1 10 10"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                />
                 Envoi en cours…
               </>
             ) : (

@@ -1,99 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Siège auto en tissu, avant nettoyage : taches, auréoles et miettes">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <!-- Macro tissu de siège auto, état sale : grain terne, taches, poussière.
+       Remplaçable par une vraie photo : /gallery/siege-avant.jpg -->
   <defs>
-    <radialGradient id="bg" cx="50%" cy="38%" r="80%">
-      <stop offset="0%" stop-color="#111823"/>
-      <stop offset="100%" stop-color="#0d141f"/>
+    <filter id="fabric" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch" result="grain"/>
+      <feColorMatrix in="grain" type="saturate" values="0" result="grainG"/>
+      <feComponentTransfer in="grainG" result="grainA"><feFuncA type="linear" slope="0.4" intercept="0"/></feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="grainA" mode="multiply" result="g1"/>
+      <feTurbulence type="turbulence" baseFrequency="0.006 0.42" numOctaves="2" seed="11" result="threads"/>
+      <feColorMatrix in="threads" type="saturate" values="0" result="threadsG"/>
+      <feComponentTransfer in="threadsG" result="threadsA"><feFuncA type="linear" slope="0.22" intercept="0"/></feComponentTransfer>
+      <feBlend in="g1" in2="threadsA" mode="soft-light"/>
+    </filter>
+    <filter id="stain" x="-40%" y="-40%" width="180%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="70"/>
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="dust" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.12" numOctaves="4" seed="21" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0.35 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <radialGradient id="vignette" cx="50%" cy="42%" r="75%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.55"/>
     </radialGradient>
-    <linearGradient id="fabric" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#5d5749"/>
-      <stop offset="100%" stop-color="#423d32"/>
-    </linearGradient>
-    <linearGradient id="bolster" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4b4638"/>
-      <stop offset="100%" stop-color="#37332a"/>
-    </linearGradient>
-    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#655e4d"/>
-      <stop offset="100%" stop-color="#494338"/>
-    </linearGradient>
-    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="14"/>
-    </filter>
-    <filter id="blur6" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="6"/>
-    </filter>
   </defs>
 
-  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Base tissu terne, gris-brun encrassé -->
+  <rect width="800" height="600" fill="#57524a" filter="url(#fabric)"/>
 
-  <!-- Ombre au sol -->
-  <ellipse cx="400" cy="548" rx="250" ry="26" fill="#000000" opacity="0.55" filter="url(#soft)"/>
+  <!-- Voile de poussière irrégulier -->
+  <rect width="800" height="600" filter="url(#dust)" opacity="0.5"/>
 
-  <!-- Appuie-tête -->
-  <rect x="322" y="52" width="156" height="86" rx="36" fill="url(#fabric)" stroke="#26221b" stroke-width="2"/>
-  <rect x="362" y="130" width="12" height="34" rx="5" fill="#23201a"/>
-  <rect x="426" y="130" width="12" height="34" rx="5" fill="#23201a"/>
-
-  <!-- Dossier -->
-  <rect x="242" y="152" width="316" height="266" rx="44" fill="url(#fabric)" stroke="#26221b" stroke-width="2"/>
-  <rect x="252" y="164" width="58" height="244" rx="28" fill="url(#bolster)"/>
-  <rect x="490" y="164" width="58" height="244" rx="28" fill="url(#bolster)"/>
-  <rect x="320" y="166" width="160" height="240" rx="22" fill="url(#panel)"/>
-  <g stroke="#2c2820" stroke-width="2" opacity="0.7">
-    <line x1="330" y1="216" x2="470" y2="216"/>
-    <line x1="330" y1="264" x2="470" y2="264"/>
-    <line x1="330" y1="312" x2="470" y2="312"/>
-    <line x1="330" y1="360" x2="470" y2="360"/>
+  <!-- Coutures de panneau : creux d'ombre + double surpiqûre -->
+  <g>
+    <path d="M170 -20 C 195 160, 185 420, 205 620" stroke="#2e2b26" stroke-width="10" fill="none" opacity="0.55"/>
+    <path d="M160 -20 C 185 160, 175 420, 195 620" stroke="#8a8378" stroke-width="1.6" fill="none" stroke-dasharray="7 5" opacity="0.5"/>
+    <path d="M181 -20 C 206 160, 196 420, 216 620" stroke="#8a8378" stroke-width="1.6" fill="none" stroke-dasharray="7 5" opacity="0.5"/>
+    <path d="M620 -20 C 600 180, 615 400, 598 620" stroke="#2e2b26" stroke-width="10" fill="none" opacity="0.5"/>
+    <path d="M631 -20 C 611 180, 626 400, 609 620" stroke="#8a8378" stroke-width="1.6" fill="none" stroke-dasharray="7 5" opacity="0.45"/>
   </g>
 
-  <!-- Assise -->
-  <rect x="240" y="536" width="320" height="20" rx="10" fill="#1a1712"/>
-  <rect x="210" y="406" width="380" height="136" rx="42" fill="url(#fabric)" stroke="#26221b" stroke-width="2"/>
-  <rect x="218" y="416" width="66" height="118" rx="30" fill="url(#bolster)"/>
-  <rect x="516" y="416" width="66" height="118" rx="30" fill="url(#bolster)"/>
-  <rect x="294" y="418" width="212" height="114" rx="20" fill="url(#panel)"/>
-  <g stroke="#2c2820" stroke-width="2" opacity="0.7">
-    <line x1="347" y1="426" x2="347" y2="524"/>
-    <line x1="400" y1="426" x2="400" y2="524"/>
-    <line x1="453" y1="426" x2="453" y2="524"/>
+  <!-- Taches : café renversé, auréoles, marque sombre incrustée -->
+  <g filter="url(#stain)">
+    <ellipse cx="430" cy="240" rx="120" ry="85" fill="#4a3421" opacity="0.55"/>
+    <ellipse cx="465" cy="265" rx="60" ry="42" fill="#3a2717" opacity="0.6"/>
+    <ellipse cx="300" cy="430" rx="95" ry="60" fill="#42392a" opacity="0.45"/>
+    <ellipse cx="640" cy="470" rx="70" ry="55" fill="#35302a" opacity="0.5"/>
+  </g>
+  <!-- Auréoles séchées (contours seuls) -->
+  <g filter="url(#stain)" opacity="0.5">
+    <ellipse cx="430" cy="240" rx="135" ry="98" fill="none" stroke="#2f2415" stroke-width="6"/>
+    <ellipse cx="300" cy="430" rx="108" ry="72" fill="none" stroke="#2b2418" stroke-width="5"/>
   </g>
 
-  <!-- Salissures : grande tache + auréole sur le dossier -->
-  <ellipse cx="392" cy="282" rx="60" ry="44" fill="none" stroke="#241a0d" stroke-width="6" opacity="0.45" filter="url(#blur6)"/>
-  <ellipse cx="392" cy="280" rx="47" ry="33" fill="#3a2a16" opacity="0.55"/>
-  <ellipse cx="376" cy="296" rx="27" ry="19" fill="#2c1f0f" opacity="0.6"/>
-  <ellipse cx="414" cy="266" rx="16" ry="10" fill="#31220f" opacity="0.5"/>
-
-  <!-- Tache basse du dossier + coulure sur le boudin -->
-  <ellipse cx="436" cy="372" rx="30" ry="16" fill="#3d2d18" opacity="0.5"/>
-  <ellipse cx="436" cy="372" rx="40" ry="24" fill="none" stroke="#241a0d" stroke-width="4" opacity="0.4" filter="url(#blur6)"/>
-  <path d="M280 296 q6 22 -2 42 q-6 18 3 36" fill="none" stroke="#2f2412" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
-
-  <!-- Trace sur l'appuie-tête -->
-  <ellipse cx="422" cy="102" rx="27" ry="12" fill="#33261a" opacity="0.45"/>
-
-  <!-- Taches et auréoles sur l'assise -->
-  <ellipse cx="372" cy="472" rx="66" ry="36" fill="none" stroke="#221809" stroke-width="6" opacity="0.45" filter="url(#blur6)"/>
-  <ellipse cx="372" cy="470" rx="52" ry="27" fill="#3a2a13" opacity="0.6"/>
-  <ellipse cx="356" cy="480" rx="26" ry="14" fill="#2a1d0b" opacity="0.6"/>
-  <ellipse cx="466" cy="500" rx="25" ry="12" fill="#35260f" opacity="0.5"/>
-  <ellipse cx="256" cy="470" rx="15" ry="26" fill="#302511" opacity="0.4"/>
-
-  <!-- Miettes et poussière -->
-  <g fill="#c9b98f" opacity="0.75">
-    <circle cx="322" cy="512" r="3"/><circle cx="345" cy="498" r="2.3"/><circle cx="416" cy="516" r="2.8"/>
-    <circle cx="438" cy="452" r="2.2"/><circle cx="484" cy="482" r="2.6"/><circle cx="300" cy="466" r="2.4"/>
-    <circle cx="386" cy="438" r="2"/><circle cx="500" cy="518" r="2.2"/>
-  </g>
-  <g fill="#8a7a58" opacity="0.7">
-    <circle cx="336" cy="530" r="2.4"/><circle cx="404" cy="492" r="2"/><circle cx="452" cy="522" r="2.6"/>
-    <circle cx="286" cy="502" r="2.2"/><circle cx="522" cy="466" r="2"/><circle cx="366" cy="514" r="1.8"/>
-  </g>
-  <g fill="#7a6d52" opacity="0.4">
-    <circle cx="352" cy="200" r="1.8"/><circle cx="428" cy="230" r="1.6"/><circle cx="390" cy="340" r="1.8"/>
-    <circle cx="340" cy="382" r="1.6"/><circle cx="452" cy="316" r="1.6"/><circle cx="368" cy="246" r="1.4"/>
+  <!-- Miettes / particules -->
+  <g fill="#c9bfa8" opacity="0.55">
+    <circle cx="215" cy="180" r="2.4"/><circle cx="530" cy="140" r="1.8"/>
+    <circle cx="575" cy="345" r="2.2"/><circle cx="380" cy="520" r="2.6"/>
+    <circle cx="140" cy="330" r="1.9"/><circle cx="700" cy="220" r="2.1"/>
+    <circle cx="480" cy="410" r="1.7"/><circle cx="250" cy="540" r="2.3"/>
   </g>
 
-  <!-- Éclairage plat : léger voile terne -->
-  <rect x="200" y="40" width="400" height="520" fill="#141210" opacity="0.18"/>
+  <rect width="800" height="600" fill="url(#vignette)"/>
 </svg>

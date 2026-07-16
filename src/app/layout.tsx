@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { COMPANY } from "@/lib/services";
 
-const outfit = Outfit({
+/**
+ * Fraunces — serif "old style" à empattements marqués, chaleureuse et
+ * artisanale : portée par les titres, elle casse le look SaaS générique.
+ */
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-serif",
   display: "swap",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
 const inter = Inter({
@@ -37,8 +43,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${outfit.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="fr" className={`${fraunces.variable} ${inter.variable}`}>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }

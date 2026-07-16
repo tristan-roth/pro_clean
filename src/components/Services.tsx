@@ -1,5 +1,9 @@
+import { Armchair, BedDouble, Car, Layers, Phone } from "lucide-react";
 import { CATEGORY_LABELS, COMPANY, SERVICES } from "@/lib/services";
 import type { ServiceCategory } from "@/lib/types";
+import TiltCard from "@/components/fx/TiltCard";
+import FadeIn from "@/components/fx/FadeIn";
+import RevealText from "@/components/fx/RevealText";
 
 /** Extrait la valeur numérique d'un prix du catalogue, ex. "dès 89 €" → 89. */
 function parsePrice(price: string): number {
@@ -37,161 +41,162 @@ type CategoryCard = {
   category: ServiceCategory;
   description: string;
   icon: JSX.Element;
+  /** Largeur de la carte dans la grille bento (sur 12 colonnes). */
+  span: "wide" | "narrow";
 };
 
 const ICON_PROPS = {
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.5,
-  className: "h-10 w-10",
+  strokeWidth: 1.1,
+  className: "h-9 w-9",
   "aria-hidden": true,
 } as const;
 
+/**
+ * Grille bento asymétrique : deux rangées 7/5 puis 5/7,
+ * pour casser la monotonie des 4 colonnes égales.
+ */
 const CATEGORY_CARDS: CategoryCard[] = [
   {
     category: "auto",
+    span: "wide",
     description:
-      "Votre habitacle retrouve son état d’origine : sièges, moquettes et plastiques nettoyés en profondeur. Fini les taches incrustées et les mauvaises odeurs.",
-    icon: (
-      <svg {...ICON_PROPS}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4.75 13 6.3 8.7a2.25 2.25 0 0 1 2.12-1.45h7.16A2.25 2.25 0 0 1 17.7 8.7L19.25 13"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3.75 14.75A1.75 1.75 0 0 1 5.5 13h13a1.75 1.75 0 0 1 1.75 1.75v2.5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-.5H6.75v.5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z"
-        />
-        <path strokeLinecap="round" d="M7 15.65h.5M16.5 15.65h.5" />
-      </svg>
-    ),
+      "Votre habitacle retrouve son état d'origine : sièges, moquettes et plastiques nettoyés en profondeur. Fini les taches incrustées et les mauvaises odeurs.",
+    icon: <Car {...ICON_PROPS} />,
   },
   {
     category: "canape",
+    span: "narrow",
     description:
-      "Un canapé comme neuf grâce à l’injection-extraction professionnelle. Taches, auréoles et odeurs disparaissent, même sur les tissus délicats.",
-    icon: (
-      <svg {...ICON_PROPS}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19.5 10.25V7.5A2.5 2.5 0 0 0 17 5H7a2.5 2.5 0 0 0-2.5 2.5v2.75"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M2.75 15.5a2.5 2.5 0 0 0 2.5 2.5h13.5a2.5 2.5 0 0 0 2.5-2.5v-3a1.9 1.9 0 1 0-3.8 0v1.25a.5.5 0 0 1-.5.5H7.05a.5.5 0 0 1-.5-.5V12.5a1.9 1.9 0 1 0-3.8 0z"
-        />
-        <path strokeLinecap="round" d="M5.25 18v1.5M18.75 18v1.5" />
-      </svg>
-    ),
+      "Un canapé comme neuf grâce à l'injection-extraction professionnelle. Taches, auréoles et odeurs disparaissent, même sur les tissus délicats.",
+    icon: <Armchair {...ICON_PROPS} />,
   },
   {
     category: "tapis",
+    span: "narrow",
     description:
-      "Vos tapis et moquettes retrouvent couleurs et douceur d’origine. Brossage, extraction en profondeur et fraîcheur qui dure.",
-    icon: (
-      <svg {...ICON_PROPS}>
-        <rect x="5.75" y="3.75" width="12.5" height="16.5" rx="1.5" />
-        <path strokeLinecap="round" d="M5.75 6.9h12.5M5.75 17.1h12.5" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.4 14.1 12 12 14.6 9.9 12z" />
-      </svg>
-    ),
+      "Vos tapis et moquettes retrouvent couleurs et douceur d'origine. Brossage, extraction en profondeur et fraîcheur qui dure.",
+    icon: <Layers {...ICON_PROPS} />,
   },
   {
     category: "textiles",
+    span: "wide",
     description:
       "Matelas, chaises, têtes de lit, sièges de bureau… tous vos textiles traités avec soin. Une hygiène irréprochable, sans agresser les fibres.",
-    icon: (
-      <svg {...ICON_PROPS}>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="m15.7 4 4.3 1.9a1.4 1.4 0 0 1 .77 1.75l-.9 2.62a1 1 0 0 1-.95.68H17v7.55a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 18.5v-7.55H5.08a1 1 0 0 1-.95-.68l-.9-2.62A1.4 1.4 0 0 1 4 5.9L8.3 4a3.72 3.72 0 0 0 7.4 0z"
-        />
-      </svg>
-    ),
+    icon: <BedDouble {...ICON_PROPS} />,
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="scroll-mt-24 bg-section-glow py-24">
+    <section id="services" className="relative scroll-mt-24 py-28">
       <div className="section-container">
         {/* En-tête de section */}
-        <div className="flex flex-col items-center text-center">
-          <span className="section-eyebrow">Nos prestations</span>
-          <h2 className="section-title">Un nettoyage en profondeur, pour chaque support</h2>
-          <p className="section-lead mx-auto">
-            Taches incrustées, auréoles, mauvaises odeurs&nbsp;: notre matériel professionnel
-            d’injection-extraction en vient à bout. Résultat professionnel garanti, directement
-            à votre domicile.
-          </p>
+        <div className="flex flex-col items-start">
+          <FadeIn>
+            <span className="section-eyebrow">Nos prestations</span>
+          </FadeIn>
+          <h2 className="section-title max-w-2xl">
+            <RevealText text="Un savoir-faire," as="span" className="block" />
+            <RevealText
+              text="quatre matières."
+              as="span"
+              className="text-gesture block"
+              delay={0.35}
+            />
+          </h2>
+          <FadeIn delay={0.2}>
+            <p className="section-lead">
+              Taches incrustées, auréoles, mauvaises odeurs&nbsp;: notre matériel
+              professionnel d&apos;injection-extraction en vient à bout. Résultat
+              garanti, directement à votre domicile.
+            </p>
+          </FadeIn>
         </div>
 
-        {/* Grille des 4 catégories */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORY_CARDS.map((card) => (
-            <article
+        {/* Grille bento asymétrique */}
+        <div className="mt-16 grid gap-5 lg:grid-cols-12">
+          {CATEGORY_CARDS.map((card, index) => (
+            <FadeIn
               key={card.category}
-              className="glass-card group flex flex-col p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-neon-400/40 hover:shadow-neon"
+              delay={0.1 + (index % 2) * 0.12}
+              className={card.span === "wide" ? "lg:col-span-7" : "lg:col-span-5"}
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-neon-400/20 bg-neon-500/10 text-neon-300 transition-all duration-300 group-hover:bg-neon-500/20 group-hover:shadow-neon-sm">
-                {card.icon}
-              </div>
+              <TiltCard className="material-card group h-full transition-shadow duration-500 hover:shadow-card-hover">
+                <article className="relative flex h-full flex-col p-8 sm:p-10">
+                  {/* Numéro gravé en fond — flotte en parallaxe au tilt */}
+                  <span
+                    data-tilt-parallax="deep"
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -top-4 right-6 select-none font-serif text-[7rem] font-light italic leading-none text-white/[0.04]"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-              <h3 className="mt-5 font-display text-xl font-bold text-white">
-                {CATEGORY_LABELS[card.category]}
-              </h3>
+                  {/* Icône ligne fine */}
+                  <div
+                    data-tilt-parallax
+                    className="flex h-16 w-16 items-center justify-center rounded-full border border-white/10 text-silver-300 transition-colors duration-500 group-hover:border-vapor-400/40 group-hover:text-vapor-300"
+                  >
+                    {card.icon}
+                  </div>
 
-              <p className="mt-2.5 text-sm leading-relaxed text-steel-300">{card.description}</p>
+                  <h3 className="mt-7 font-serif text-2xl font-medium text-porcelain">
+                    {CATEGORY_LABELS[card.category]}
+                  </h3>
 
-              <ul className="mt-5 space-y-2.5">
-                {highlightsFor(card.category).map((highlight) => (
-                  <li key={highlight} className="flex items-start gap-2.5 text-sm text-steel-200">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      className="mt-0.5 h-4 w-4 shrink-0 text-neon-400"
-                      aria-hidden="true"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m5 12.5 4.5 4.5L19 7.5" />
-                    </svg>
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
+                  <p className="mt-3 max-w-md text-sm font-light leading-relaxed text-silver-400">
+                    {card.description}
+                  </p>
 
-              <div className="mt-auto pt-6">
-                <div className="neon-divider opacity-30" aria-hidden="true" />
-                <p className="mt-4 font-semibold text-neon-300">
-                  à partir de {minPriceFor(card.category)}&nbsp;€
-                </p>
-              </div>
-            </article>
+                  <ul className="mt-6 space-y-2.5">
+                    {highlightsFor(card.category).map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex items-start gap-3 text-sm text-silver-300"
+                      >
+                        <span
+                          className="mt-[0.55em] h-px w-4 shrink-0 bg-vapor-400/60"
+                          aria-hidden="true"
+                        />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto flex items-baseline justify-between gap-4 pt-8">
+                    <p className="text-[11px] font-semibold uppercase tracking-caps text-silver-500">
+                      à partir de
+                    </p>
+                    <p className="font-serif text-3xl font-medium text-porcelain">
+                      {minPriceFor(card.category)}
+                      <span className="ml-1 text-lg text-silver-400">€</span>
+                    </p>
+                  </div>
+                </article>
+              </TiltCard>
+            </FadeIn>
           ))}
         </div>
 
-        {/* Bandeau CTA devis */}
-        <div className="glass-card mx-auto mt-16 flex max-w-3xl flex-col items-center gap-6 px-8 py-10 text-center sm:px-12">
-          <p className="text-lg leading-relaxed text-steel-200">
-            Une demande particulière&nbsp;? <span className="font-semibold text-white">Devis gratuit</span> au{" "}
+        {/* Bandeau devis — simple filet, ton direct */}
+        <FadeIn delay={0.15}>
+          <div className="mx-auto mt-20 flex max-w-2xl flex-col items-center gap-6 text-center">
+            <div className="hairline-divider" aria-hidden="true" />
+            <p className="text-lg font-light leading-relaxed text-silver-300">
+              Une demande particulière&nbsp;?{" "}
+              <span className="font-serif italic text-porcelain">Devis gratuit</span>{" "}
+              et sans engagement.
+            </p>
             <a
               href={COMPANY.phoneHref}
-              className="whitespace-nowrap font-semibold text-neon-300 transition-colors duration-300 hover:text-ice-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-400"
+              className="btn-ghost"
+              aria-label={`Appeler le ${COMPANY.phone}`}
             >
+              <Phone strokeWidth={1.25} className="h-4 w-4" aria-hidden="true" />
               {COMPANY.phone}
             </a>
-          </p>
-          <a href="#rendez-vous" className="btn-secondary">
-            Prendre Rendez-vous
-          </a>
-        </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

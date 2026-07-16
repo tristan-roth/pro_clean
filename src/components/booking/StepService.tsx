@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import { CATEGORY_LABELS, SERVICES } from "@/lib/services";
 
 interface StepServiceProps {
@@ -10,7 +11,7 @@ interface StepServiceProps {
 export default function StepService({ selectedId, onSelect }: StepServiceProps) {
   return (
     <div>
-      <p className="mb-4 text-sm text-steel-300">
+      <p className="mb-5 text-sm font-light text-silver-400">
         Quelle prestation souhaitez-vous réserver&nbsp;?
       </p>
       <div
@@ -33,44 +34,35 @@ export default function StepService({ selectedId, onSelect }: StepServiceProps) 
                   onSelect(service.id);
                 }
               }}
-              className={`group relative cursor-pointer rounded-2xl border p-5 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-400 ${
+              className={`group relative cursor-pointer rounded-2xl border p-5 transition-all duration-500 ease-out-expo focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vapor-400 ${
                 selected
-                  ? "border-neon-400 bg-neon-500/10 shadow-neon-sm"
-                  : "border-white/10 bg-night-800/60 hover:-translate-y-1 hover:border-neon-400/40 hover:shadow-neon-sm"
+                  ? "border-vapor-400/60 bg-vapor-500/[0.08] shadow-vapor-edge"
+                  : "border-white/[0.08] bg-obsidian-900/60 hover:-translate-y-0.5 hover:border-white/20 hover:bg-obsidian-800/80"
               }`}
             >
               {selected && (
                 <span
-                  className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-cta-gradient text-night-950"
+                  className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-porcelain text-obsidian-950"
                   aria-hidden="true"
                 >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 13l4 4L19 7" />
-                  </svg>
+                  <Check strokeWidth={2.25} className="h-3.5 w-3.5" />
                 </span>
               )}
 
-              <span className="inline-flex rounded-full border border-neon-400/25 bg-neon-500/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-neon-300">
+              <span className="text-[10px] font-semibold uppercase tracking-caps text-vapor-300/90">
                 {CATEGORY_LABELS[service.category]}
               </span>
-              <h3 className="mt-2.5 pr-8 font-display text-base font-semibold leading-snug text-white">
+              <h3 className="mt-2.5 pr-8 font-serif text-lg font-medium leading-snug text-porcelain">
                 {service.name}
               </h3>
-              <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-steel-400">
+              <p className="mt-1.5 line-clamp-2 text-sm font-light leading-relaxed text-silver-500">
                 {service.description}
               </p>
-              <div className="mt-3 flex items-baseline justify-between gap-2">
-                <span className="text-sm font-bold text-neon-300">{service.price}</span>
-                <span className="text-xs text-steel-400">{service.duration}</span>
+              <div className="mt-4 flex items-baseline justify-between gap-2">
+                <span className="font-serif text-base italic text-porcelain">
+                  {service.price}
+                </span>
+                <span className="text-xs text-silver-500">{service.duration}</span>
               </div>
             </div>
           );

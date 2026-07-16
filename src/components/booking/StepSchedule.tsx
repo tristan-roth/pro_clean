@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MAX_BOOKING_DAYS_AHEAD, isBookableDate, toDateKey } from "@/lib/slots";
 import type { AvailabilityResponse } from "@/lib/types";
 
@@ -90,12 +91,12 @@ export default function StepSchedule({
 
   return (
     <div>
-      <p className="mb-4 text-sm text-steel-300">
+      <p className="mb-5 text-sm font-light text-silver-400">
         Choisissez la date puis l&apos;heure de l&apos;intervention.
       </p>
 
       {/* ------------------------------------------------------------ Calendrier */}
-      <div className="rounded-2xl border border-white/[0.07] bg-night-900/60 p-4 sm:p-5">
+      <div className="rounded-2xl border border-white/[0.06] bg-obsidian-900/60 p-4 sm:p-5">
         <div className="mb-4 flex items-center justify-between">
           <button
             type="button"
@@ -104,23 +105,11 @@ export default function StepSchedule({
             }
             disabled={!canGoPrev}
             aria-label="Mois précédent"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-steel-300 transition-all duration-300 hover:border-neon-400/50 hover:text-neon-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-400 disabled:pointer-events-none disabled:opacity-30"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-silver-300 transition-all duration-300 hover:border-white/25 hover:text-porcelain focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vapor-400 disabled:pointer-events-none disabled:opacity-30"
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
+            <ChevronLeft strokeWidth={1.5} className="h-4 w-4" aria-hidden="true" />
           </button>
-          <p className="font-display text-sm font-semibold capitalize text-white" aria-live="polite">
+          <p className="font-serif text-base capitalize italic text-porcelain" aria-live="polite">
             {monthLabel}
           </p>
           <button
@@ -130,21 +119,9 @@ export default function StepSchedule({
             }
             disabled={!canGoNext}
             aria-label="Mois suivant"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-steel-300 transition-all duration-300 hover:border-neon-400/50 hover:text-neon-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-400 disabled:pointer-events-none disabled:opacity-30"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-silver-300 transition-all duration-300 hover:border-white/25 hover:text-porcelain focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vapor-400 disabled:pointer-events-none disabled:opacity-30"
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M9 6l6 6-6 6" />
-            </svg>
+            <ChevronRight strokeWidth={1.5} className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
 
@@ -152,7 +129,7 @@ export default function StepSchedule({
           {WEEKDAY_HEADERS.map((label, index) => (
             <span
               key={`${label}-${index}`}
-              className="py-1 text-[11px] font-semibold uppercase tracking-wider text-steel-500"
+              className="py-1 text-[10px] font-semibold uppercase tracking-caps text-silver-600"
               aria-hidden="true"
             >
               {label}
@@ -178,12 +155,12 @@ export default function StepSchedule({
                 onClick={() => setSelectedDate(key)}
                 aria-label={`Choisir le ${DAY_FORMATTER.format(dayDate)}`}
                 aria-pressed={isSelected}
-                className={`flex h-10 w-full items-center justify-center rounded-lg text-sm transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-neon-400 ${
+                className={`flex h-10 w-full items-center justify-center rounded-lg text-sm transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-vapor-400 ${
                   isSelected
-                    ? "bg-cta-gradient font-bold text-night-950 shadow-neon-sm"
+                    ? "bg-porcelain font-semibold text-obsidian-950"
                     : bookable
-                      ? "text-steel-200 hover:bg-neon-500/15 hover:text-neon-300"
-                      : "cursor-not-allowed text-steel-500/40"
+                      ? "text-silver-300 hover:bg-white/[0.06] hover:text-porcelain"
+                      : "cursor-not-allowed text-silver-600/40"
                 }`}
               >
                 {dayNumber}
@@ -196,7 +173,7 @@ export default function StepSchedule({
       {/* -------------------------------------------------------------- Créneaux */}
       <div className="mt-5" aria-live="polite">
         {!selectedDate && (
-          <p className="text-sm text-steel-400">
+          <p className="text-sm font-light text-silver-500">
             Sélectionnez une date pour afficher les créneaux disponibles.
           </p>
         )}
@@ -204,7 +181,7 @@ export default function StepSchedule({
         {selectedDate && loading && (
           <div className="grid grid-cols-3 gap-2">
             {Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="h-11 animate-pulse rounded-xl bg-night-700/60" />
+              <div key={index} className="h-11 animate-pulse rounded-xl bg-obsidian-700/60" />
             ))}
           </div>
         )}
@@ -216,7 +193,7 @@ export default function StepSchedule({
         )}
 
         {readyAvailability && allBooked && (
-          <p className="text-sm text-amber-300">
+          <p className="text-sm text-amber-200">
             Journée complète — choisissez une autre date.
           </p>
         )}
@@ -235,12 +212,12 @@ export default function StepSchedule({
                     disabled={isBooked}
                     title={isBooked ? "Créneau déjà réservé" : undefined}
                     onClick={() => onPick(readyAvailability.date, slot)}
-                    className={`rounded-xl border px-3 py-2.5 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-400 ${
+                    className={`rounded-xl border px-3 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vapor-400 ${
                       isSelected
-                        ? "border-transparent bg-cta-gradient text-night-950 shadow-neon-sm"
+                        ? "border-transparent bg-porcelain font-semibold text-obsidian-950"
                         : isBooked
-                          ? "cursor-not-allowed border-white/10 text-steel-500 line-through opacity-40"
-                          : "border-white/15 text-steel-200 hover:border-neon-400/60 hover:text-neon-300"
+                          ? "cursor-not-allowed border-white/10 text-silver-600 line-through opacity-40"
+                          : "border-white/15 text-silver-300 hover:border-vapor-400/50 hover:text-porcelain"
                     }`}
                   >
                     {slot}
@@ -250,13 +227,13 @@ export default function StepSchedule({
             </div>
 
             {/* Légende */}
-            <div className="mt-4 flex items-center gap-5 text-xs text-steel-400">
+            <div className="mt-4 flex items-center gap-5 text-xs text-silver-500">
               <span className="inline-flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-neon-400 shadow-neon-sm" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 rounded-full bg-vapor-400" aria-hidden="true" />
                 Disponible
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-steel-500/50" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 rounded-full bg-silver-600/50" aria-hidden="true" />
                 <span className="line-through">Réservé</span>
               </span>
             </div>

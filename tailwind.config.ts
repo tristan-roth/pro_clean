@@ -5,78 +5,96 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Fonds — noir / anthracite premium
-        night: {
-          950: "#04060a",
-          900: "#070b12",
-          850: "#0a0f18",
-          800: "#0d141f",
-          700: "#131c2b",
-          600: "#1a2537",
+        // Fonds — noir obsidian profond, neutre (aucune teinte bleutée)
+        obsidian: {
+          950: "#060607",
+          900: "#0a0a0c",
+          850: "#0e0e11",
+          800: "#131317",
+          700: "#1a1a20",
+          600: "#232329",
         },
-        // Accent principal — bleu néon / électrique
-        neon: {
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
+        // Gris anthracite — surfaces, bordures, métal brossé
+        anthracite: {
+          700: "#2b2b32",
+          600: "#3a3a42",
+          500: "#4b4b54",
         },
-        // Accent secondaire — cyan glacé (reflets "propre")
-        ice: {
-          300: "#67e8f9",
-          400: "#22d3ee",
+        // Texte — du blanc pur au gris pierre
+        porcelain: "#fbfbfc",
+        silver: {
+          200: "#e6e6ea",
+          300: "#c3c3cb",
+          400: "#94949e",
+          500: "#6e6e78",
+          600: "#4e4e57",
         },
-        // Texte
-        steel: {
-          100: "#eef4fb",
-          200: "#d5e0ee",
-          300: "#a9b8cc",
-          400: "#7e8ea6",
-          500: "#5c6b82",
+        // Accent unique — bleu "eau / vapeur", précis et retenu
+        vapor: {
+          200: "#cfe9f2",
+          300: "#a4d4e4",
+          400: "#6fb3cb",
+          500: "#4390ad",
+          600: "#2f6f8a",
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        // Halos néon — à utiliser sur les CTA et cartes actives
-        "neon-sm": "0 0 12px -2px rgba(56, 189, 248, 0.45)",
-        neon: "0 0 24px -4px rgba(56, 189, 248, 0.55), 0 0 64px -12px rgba(14, 165, 233, 0.35)",
-        "neon-lg":
-          "0 0 40px -6px rgba(56, 189, 248, 0.6), 0 0 100px -16px rgba(14, 165, 233, 0.45)",
-        card: "0 20px 50px -24px rgba(0, 0, 0, 0.7)",
+        // Ombres physiques, profondes et douces — jamais de halo néon
+        card: "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 24px 60px -30px rgba(0,0,0,0.85)",
+        "card-hover":
+          "0 1px 0 0 rgba(255,255,255,0.07) inset, 0 40px 90px -36px rgba(0,0,0,0.95)",
+        knob: "0 1px 0 rgba(255,255,255,0.25) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 8px 24px -6px rgba(0,0,0,0.8)",
+        "vapor-edge": "0 0 0 1px rgba(111,179,203,0.25)",
       },
       backgroundImage: {
-        // Dégradés subtils sur fond noir/anthracite
-        "hero-glow":
-          "radial-gradient(ellipse 80% 55% at 50% -12%, rgba(14, 165, 233, 0.22), transparent 65%)",
-        "section-glow":
-          "radial-gradient(ellipse 60% 45% at 50% 0%, rgba(14, 165, 233, 0.10), transparent 70%)",
-        "card-sheen":
-          "linear-gradient(160deg, rgba(125, 211, 252, 0.08) 0%, transparent 38%, transparent 100%)",
-        "neon-line":
-          "linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.75), transparent)",
-        "cta-gradient": "linear-gradient(135deg, #0ea5e9 0%, #22d3ee 100%)",
+        // Voile lumineux très discret en haut de section
+        "section-veil":
+          "radial-gradient(ellipse 55% 40% at 50% 0%, rgba(111,179,203,0.05), transparent 70%)",
+        // Filet horizontal en dégradé (séparateur hairline)
+        hairline:
+          "linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent)",
+        "hairline-vapor":
+          "linear-gradient(90deg, transparent, rgba(111,179,203,0.45), transparent)",
+        // Surface métal brossé (boutons, poignées)
+        "brushed-metal":
+          "linear-gradient(180deg, #f6f6f7 0%, #dedee2 48%, #c9c9cf 52%, #e8e8ec 100%)",
+      },
+      letterSpacing: {
+        caps: "0.22em",
       },
       keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        "steam-rise": {
+          "0%": { transform: "translateY(12px) translateX(0) scale(0.7)", opacity: "0" },
+          "25%": { opacity: "0.5" },
+          "100%": { transform: "translateY(-46px) translateX(6px) scale(1.5)", opacity: "0" },
         },
-        "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 24px -4px rgba(56, 189, 248, 0.45)" },
-          "50%": { boxShadow: "0 0 40px -4px rgba(56, 189, 248, 0.75)" },
+        "haze-wobble": {
+          "0%, 100%": { transform: "translateX(-1.5px) scaleY(1)" },
+          "50%": { transform: "translateX(1.5px) scaleY(1.02)" },
         },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
+        "slow-drift": {
+          "0%, 100%": { transform: "translate3d(0,0,0)" },
+          "50%": { transform: "translate3d(0,-8px,0)" },
+        },
+        // Fil qui descend le long de l'indicateur de scroll
+        "thread-down": {
+          "0%": { transform: "translateY(-100%)", opacity: "0" },
+          "30%": { opacity: "1" },
+          "100%": { transform: "translateY(300%)", opacity: "0" },
         },
       },
       animation: {
-        "fade-up": "fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both",
-        "pulse-glow": "pulse-glow 2.6s ease-in-out infinite",
-        shimmer: "shimmer 2.5s linear infinite",
+        "steam-rise": "steam-rise 2.4s ease-out infinite",
+        "haze-wobble": "haze-wobble 1.8s ease-in-out infinite",
+        "slow-drift": "slow-drift 7s ease-in-out infinite",
+        "thread-down": "thread-down 2.2s ease-in-out infinite",
+      },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },
